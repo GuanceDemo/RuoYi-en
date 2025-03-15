@@ -1,109 +1,109 @@
 /**
- * Bootstrap Table Chinese translation
- * Author: Zhixin Wen<wenzhixin2010@gmail.com>
+ * Bootstrap Table English translation
+ * Author: Translated from Chinese by Trae AI
  */
-$.fn.bootstrapTable.locales['zh-CN'] = {
+$.fn.bootstrapTable.locales['en-US'] = {
   formatShowSearch: function formatShowSearch() {
-    return '隐藏/显示搜索';
+    return 'Hide/Show Search';
   },
   formatPageGo: function formatPageGo() {
-    return '跳转';
+    return 'Go';
   },
   formatCopyRows: function formatCopyRows() {
-    return '复制行';
+    return 'Copy Rows';
   },
   formatPrint: function formatPrint() {
-    return '打印';
+    return 'Print';
   },
   formatLoadingMessage: function formatLoadingMessage() {
-    return '正在努力地加载数据中，请稍候';
+    return 'Loading data, please wait...';
   },
   formatRecordsPerPage: function formatRecordsPerPage(pageNumber) {
-    return "每页显示 ".concat(pageNumber, " 条记录");
+    return `Display ${pageNumber} records per page`;
   },
   formatShowingRows: function formatShowingRows(pageFrom, pageTo, totalRows, totalNotFiltered) {
-    if (totalNotFiltered !== undefined && totalNotFiltered > 0 && totalNotFiltered > totalRows) {
-      return "显示第 ".concat(pageFrom, " 到第 ").concat(pageTo, " 条记录，总共 ").concat(totalRows, " 条记录（从 ").concat(totalNotFiltered, " 总记录中过滤）");
+    if (totalNotFiltered!== undefined && totalNotFiltered > 0 && totalNotFiltered > totalRows) {
+      return `Showing records from ${pageFrom} to ${pageTo}, a total of ${totalRows} records (filtered from ${totalNotFiltered} total records)`;
     }
-    return "显示第 ".concat(pageFrom, " 到第 ").concat(pageTo, " 条记录，总共 ").concat(totalRows, " 条记录");
+    return `Showing records from ${pageFrom} to ${pageTo}, a total of ${totalRows} records`;
   },
   formatSRPaginationPreText: function formatSRPaginationPreText() {
-    return '上一页';
+    return 'Previous Page';
   },
   formatSRPaginationPageText: function formatSRPaginationPageText(page) {
-    return "第".concat(page, "页");
+    return `Page ${page}`;
   },
   formatSRPaginationNextText: function formatSRPaginationNextText() {
-    return '下一页';
+    return 'Next Page';
   },
   formatDetailPagination: function formatDetailPagination(totalRows) {
-    return "总共 ".concat(totalRows, " 条记录");
+    return `A total of ${totalRows} records`;
   },
   formatClearSearch: function formatClearSearch() {
-    return '清空过滤';
+    return 'Clear Filter';
   },
   formatSearch: function formatSearch() {
-    return '搜索';
+    return 'Search';
   },
   formatNoMatches: function formatNoMatches() {
-    return '没有找到匹配的记录';
+    return 'No matching records found';
   },
   formatPaginationSwitch: function formatPaginationSwitch() {
-    return '隐藏/显示分页';
+    return 'Hide/Show Pagination';
   },
   formatPaginationSwitchDown: function formatPaginationSwitchDown() {
-    return '显示分页';
+    return 'Show Pagination';
   },
   formatPaginationSwitchUp: function formatPaginationSwitchUp() {
-    return '隐藏分页';
+    return 'Hide Pagination';
   },
   formatRefresh: function formatRefresh() {
-    return '刷新';
+    return 'Refresh';
   },
   formatToggle: function formatToggle() {
-    return '切换';
+    return 'Toggle';
   },
   formatToggleOn: function formatToggleOn() {
-    return '显示卡片视图';
+    return 'Show Card View';
   },
   formatToggleOff: function formatToggleOff() {
-    return '隐藏卡片视图';
+    return 'Hide Card View';
   },
   formatColumns: function formatColumns() {
-    return '列';
+    return 'Columns';
   },
   formatColumnsToggleAll: function formatColumnsToggleAll() {
-    return '切换所有';
+    return 'Toggle All';
   },
   formatFullscreen: function formatFullscreen() {
-    return '全屏';
+    return 'Fullscreen';
   },
   formatAllRows: function formatAllRows() {
-    return '所有';
+    return 'All';
   },
   formatAutoRefresh: function formatAutoRefresh() {
-    return '自动刷新';
+    return 'Auto Refresh';
   },
   formatExport: function formatExport() {
-    return '导出数据';
+    return 'Export Data';
   },
   formatJumpTo: function formatJumpTo() {
-    return '跳转';
+    return 'Jump';
   },
   formatAdvancedSearch: function formatAdvancedSearch() {
-    return '高级搜索';
+    return 'Advanced Search';
   },
   formatAdvancedCloseButton: function formatAdvancedCloseButton() {
-    return '关闭';
+    return 'Close';
   },
   formatFilterControlSwitch: function formatFilterControlSwitch() {
-    return '隐藏/显示过滤控制';
+    return 'Hide/Show Filter Control';
   },
   formatFilterControlSwitchHide: function formatFilterControlSwitchHide() {
-    return '隐藏过滤控制';
+    return 'Hide Filter Control';
   },
   formatFilterControlSwitchShow: function formatFilterControlSwitchShow() {
-    return '显示过滤控制';
+    return 'Show Filter Control';
   }
 };
-$.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
+$.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['en-US']);
