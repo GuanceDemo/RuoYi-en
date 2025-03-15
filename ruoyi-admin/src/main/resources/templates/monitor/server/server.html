@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('服务器监控')" />
+    <th:block th:include="include :: header('Server Monitoring')" />
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content">
@@ -21,25 +21,25 @@
                             <table class="table table-hover no-margins">
                                 <thead>
                                     <tr>
-                                        <th>属性</th>
-                                        <th>值</th>
+                                        <th>Attribute</th>
+                                        <th>Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>核心数</td>
-                                        <td th:text="${server.cpu.cpuNum}">0个</td>
+                                        <td>Number of Cores</td>
+                                        <td th:text="${server.cpu.cpuNum}">0</td>
                                     </tr>
                                     <tr>
-                                        <td>用户使用率</td>
+                                        <td>User Usage Rate</td>
                                         <td th:text="${server.cpu.used + '%'}">0%</td>
                                     </tr>
                                     <tr>
-                                        <td>系统使用率</td>
+                                        <td>System Usage Rate</td>
                                         <td th:text="${server.cpu.sys + '%'}">0%</td>
                                     </tr>
                                     <tr>
-                                        <td>当前空闲率</td>
+                                        <td>Current Idle Rate</td>
                                         <td th:text="${server.cpu.free + '%'}">0%</td>
                                     </tr>
                                 </tbody>
@@ -51,7 +51,7 @@
                 <div class="col-sm-6">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5><i class="fa fa-ticket"></i> 内存</h5>
+                            <h5><i class="fa fa-ticket"></i> Memory</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 <a class="close-link"><i class="fa fa-times"></i></a>
@@ -61,29 +61,29 @@
                             <table class="table table-hover no-margins">
                                 <thead>
                                     <tr>
-                                        <th>属性</th>
-                                        <th>内存</th>
+                                        <th>Attribute</th>
+                                        <th>Memory</th>
                                         <th>JVM</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>总内存</td>
+                                        <td>Total Memory</td>
                                         <td th:text="${server.mem.total + 'G'}">0GB</td>
                                         <td th:text="${server.jvm.total + 'M'}">0MB</td>
                                     </tr>
                                     <tr>
-                                        <td>已用内存</td>
+                                        <td>Used Memory</td>
                                         <td th:text="${server.mem.used + 'G'}">0GB</td>
                                         <td th:text="${server.jvm.used + 'M'}">0MB</td>
                                     </tr>
                                     <tr>
-                                        <td>剩余内存</td>
+                                        <td>Free Memory</td>
                                         <td th:text="${server.mem.free + 'G'}">0GB</td>
                                         <td th:text="${server.jvm.free + 'M'}">0MB</td>
                                     </tr>
                                     <tr>
-                                        <td>使用率</td>
+                                        <td>Usage Rate</td>
                                         <td th:class="${server.mem.usage gt 80} ? 'text-danger'">[[${server.mem.usage}]]%</td>
                                         <td th:class="${server.jvm.usage gt 80} ? 'text-danger'">[[${server.jvm.usage}]]%</td>
                                     </tr>
@@ -98,7 +98,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5><i class="fa fa-windows"></i> 服务器信息</h5>
+                            <h5><i class="fa fa-windows"></i> Server Information</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -114,15 +114,15 @@
                                     <table class="table table-hover margin bottom">
                                         <tbody>
                                             <tr>
-                                                <td>服务器名称</td>
+                                                <td>Server Name</td>
                                                 <td th:text="${server.sys.computerName}">RuoYi</td>
-                                                <td>操作系统</td>
+                                                <td>Operating System</td>
                                                 <td th:text="${server.sys.osName}">Linux</td>
                                             </tr>
                                             <tr>
-                                                <td>服务器IP</td>
+                                                <td>Server IP</td>
                                                 <td th:text="${server.sys.computerIp}">127.0.0.1</td>
-                                                <td>系统架构</td>
+                                                <td>System Architecture</td>
                                                 <td th:text="${server.sys.osArch}">amd64</td>
                                             </tr>
                                         </tbody>
@@ -138,7 +138,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5><i class="fa fa-coffee"></i> Java虚拟机信息</h5>
+                            <h5><i class="fa fa-coffee"></i> Java Virtual Machine Information</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -155,27 +155,27 @@
                                     <table class="table table-hover margin bottom" style="table-layout:fixed;">
                                         <tbody>
                                             <tr>
-                                                <td>Java名称</td>
+                                                <td>Java Name</td>
                                                 <td th:text="${server.jvm.name}">Java</td>
-                                                <td>Java版本</td>
+                                                <td>Java Version</td>
                                                 <td th:text="${server.jvm.version}">1.8.0</td>
                                             </tr>
                                             <tr>
-                                                <td>启动时间</td>
+                                                <td>Startup Time</td>
                                                 <td th:text="${server.jvm.startTime}">2018-12-31 00:00:00</td>
-                                                <td>运行时长</td>
-                                                <td th:text="${server.jvm.runTime}">0天0时0分0秒</td>
+                                                <td>Running Duration</td>
+                                                <td th:text="${server.jvm.runTime}">0 days 0 hours 0 minutes 0 seconds</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="1">安装路径</td>
+                                                <td colspan="1">Installation Path</td>
                                                 <td colspan="3" th:text="${server.jvm.home}"></td>
                                             </tr>
                                              <tr>
-                                                <td colspan="1">项目路径</td>
+                                                <td colspan="1">Project Path</td>
                                                 <td colspan="3" th:text="${server.sys.userDir}"></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="1">运行参数</td>
+                                                <td colspan="1">Runtime Parameters</td>
                                                 <td colspan="3" th:text="${server.jvm.inputArgs}"></td>
                                             </tr>
                                         </tbody>
@@ -191,7 +191,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5><i class="fa fa-hdd-o"></i> 磁盘状态</h5>
+                            <h5><i class="fa fa-hdd-o"></i> Disk Status</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -208,13 +208,13 @@
                                     <table class="table table-hover margin bottom">
                                         <thead>
                                             <tr>
-                                                <th>盘符路径</th>
-                                                <th>文件系统</th>
-                                                <th>盘符类型</th>
-                                                <th>总大小</th>
-                                                <th>可用大小</th>
-                                                <th>已用大小</th>
-                                                <th>已用百分比</th>
+                                                <th>Drive Path</th>
+                                                <th>File System</th>
+                                                <th>Drive Type</th>
+                                                <th>Total Size</th>
+                                                <th>Available Size</th>
+                                                <th>Used Size</th>
+                                                <th>Used Percentage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -248,11 +248,11 @@
         e.toggleClass("fa-chevron-up").toggleClass("fa-chevron-down"),
         div_ibox.toggleClass("").toggleClass("border-bottom"),
         setTimeout(function() {
-        	div_ibox.resize();
+            div_ibox.resize();
         }, 50);
     }), $(".close-link").click(function () {
-		var div_ibox = $(this).closest("div.ibox");
-		div_ibox.remove()
-	});
+        var div_ibox = $(this).closest("div.ibox");
+        div_ibox.remove()
+    });
 </script>
 </html>
