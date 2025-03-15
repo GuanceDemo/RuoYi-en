@@ -124,9 +124,9 @@ var table = {
                     cardView: options.cardView,                         // 是否启用显示卡片视图
                     detailView: options.detailView,                     // 是否启用显示细节视图
                     onCheck: options.onCheck,                           // 当选择此行时触发
-                    onUncheck: options.onUncheck,                       // 当取消此行时触发
+                    onUncheck: options.onUncheck,                       // 当Cancel此行时触发
                     onCheckAll: options.onCheckAll,                     // 当全选行时触发
-                    onUncheckAll: options.onUncheckAll,                 // 当取消全选行时触发
+                    onUncheckAll: options.onUncheckAll,                 // 当Cancel全选行时触发
                     onClickRow: options.onClickRow,                     // 点击某行触发的事件
                     onDblClickRow: options.onDblClickRow,               // 双击某行触发的事件
                     onClickCell: options.onClickCell,                   // 单击某格触发的事件
@@ -217,7 +217,7 @@ var table = {
                     // 气泡弹出框特效
                     $('.table [data-toggle="popover"]').popover();
                 });
-                // 选中、取消、全部选中、全部取消（事件）
+                // 选中、Cancel、全部选中、全部Cancel（事件）
                 $(optionsIds).on("check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table", function (e, rowsAfter, rowsBefore) {
                     // 复选框分页保留保存选中数组
                     var rows = $.common.equals("uncheck-all", e.type) ? rowsBefore : rowsAfter;
@@ -238,7 +238,7 @@ var table = {
                         }
                     }
                 });
-                // 加载成功、选中、取消、全部选中、全部取消（事件）
+                // 加载成功、选中、Cancel、全部选中、全部Cancel（事件）
                 $(optionsIds).on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table load-success.bs.table", function () {
                     var toolbar = table.options.toolbar;
                     var uniqueId = table.options.uniqueId;
@@ -278,7 +278,7 @@ var table = {
                         top.layer.alert(input.val(), {
                             title: "信息内容",
                             shadeClose: true,
-                            btn: ['确认'],
+                            btn: ['co '],
                             btnclass: ['btn btn-primary'],
                         });
                     }
@@ -375,7 +375,7 @@ var table = {
             // 导出数据
             exportExcel: function(formId) {
                 table.set();
-                $.modal.confirm("确定导出所有" + table.options.modalName + "吗？", function() {
+                $.modal.confirm("Confirm导出所有" + table.options.modalName + "吗？", function() {
                     var currentId = $.common.isEmpty(formId) ? $('form').attr('id') : formId;
                     var params = $("#" + table.options.id).bootstrapTable('getOptions');
                     var dataParam = $("#" + currentId).serializeArray();
@@ -421,8 +421,8 @@ var table = {
                     shade: 0.3,
                     title: '导入' + table.options.modalName + '数据',
                     content: $('#' + currentId).html(),
-                    btn: ['<i class="fa fa-check"></i> 导入', '<i class="fa fa-remove"></i> 取消'],
-                    // 弹层外区域关闭
+                    btn: ['<i class="fa fa-check"></i> 导入', '<i class="fa fa-remove"></i> Cancel'],
+                    // 弹层外区域Close
                     shadeClose: true,
                     btn1: function(index, layero){
                         var file = layero.find('#file').val();
@@ -504,7 +504,7 @@ var table = {
                 }
                 return distinct ? $.common.uniqueFn(rows) : rows;
             },
-            // 获取当前页选中或者取消的行ID
+            // 获取当前页选中或者Cancel的行ID
             affectedRowIds: function(rows) {
                 var column = $.common.isEmpty(table.options.uniqueId) ? table.options.columns[1].field : table.options.uniqueId;
                 var rowIds;
@@ -773,8 +773,8 @@ var table = {
             alert: function(content, type) {
                 top.layer.alert(content, {
                     icon: $.modal.icon(type),
-                    title: "系统提示",
-                    btn: ['确认'],
+                    title: "System Tips",
+                    btn: ['con firm'],
                     btnclass: ['btn btn-primary'],
                 });
             },
@@ -814,7 +814,7 @@ var table = {
                     return top.layer.getChildFrame('body', index);
                 }
             },
-            // 关闭窗体
+            // Close窗体
             close: function (index) {
                 if ($.common.isEmpty(index)) {
                     var index = parent.layer.getFrameIndex(window.name);
@@ -823,16 +823,16 @@ var table = {
                     top.layer.close(index);
                 }
             },
-            // 关闭全部窗体
+            // Close全部窗体
             closeAll: function () {
                 top.layer.closeAll();
             },
-            // 确认窗体
+            // Confirm窗体
             confirm: function (content, callBack) {
                 top.layer.confirm(content, {
                     icon: 3,
-                    title: "系统提示",
-                    btn: ['确认', '取消']
+                    title: "System Tips",
+                    btn: ['Confirm', 'Cancel']
                 }, function (index) {
                     $.modal.close(index);
                     callBack(true);
@@ -872,8 +872,8 @@ var table = {
                     shade: 0.3,
                     title: title,
                     content: url,
-                    btn: ['确定', '关闭'],
-                    // 弹层外区域关闭
+                    btn: ['Confirm', 'Clone'],
+                    // 弹层外区域Close
                     shadeClose: true,
                     yes: callback,
                     cancel: function(index) {
@@ -887,10 +887,10 @@ var table = {
             // 弹出层指定参数选项
             openOptions: function (options) {
                 var _url = $.common.isEmpty(options.url) ? "/404.html" : options.url; 
-                var _title = $.common.isEmpty(options.title) ? "系统窗口" : options.title; 
+                var _title = $.common.isEmpty(options.title) ? "System windows" : options.title; 
                 var _width = $.common.isEmpty(options.width) ? "800" : options.width; 
                 var _height = $.common.isEmpty(options.height) ? ($(window).height() - 50) : options.height;
-                var _btn = ['<i class="fa fa-check"></i> 确认', '<i class="fa fa-close"></i> 关闭'];
+                var _btn = ['<i class="fa fa-check"></i> Confirm', '<i class="fa fa-close"></i> Close'];
                 // 如果是移动端，就使用自适应大小弹窗
                 if ($.common.isMobile()) {
                     _width = 'auto';
@@ -965,8 +965,8 @@ var table = {
                     shade: 0.3,
                     title: title,
                     content: url,
-                    btn: ['确定', '关闭'],
-                    // 弹层外区域关闭
+                    btn: ['Confirm', 'Close'],
+                    // 弹层外区域Close
                     shadeClose: true,
                     yes: function(index, layero) {
                         var iframeWin = layero.find('iframe')[0];
@@ -1011,7 +1011,7 @@ var table = {
                     content: url
                 });
             },
-            // 关闭选项卡
+            // Close选项卡
             closeTab: function (dataId) {
                 closeItem(dataId);
             },
@@ -1029,7 +1029,7 @@ var table = {
             loading: function (message) {
                 $.blockUI({ message: '<div class="loaderbox"><div class="loading-activity"></div> ' + message + '</div>' });
             },
-            // 关闭遮罩层
+            // Close遮罩层
             closeLoading: function () {
                 setTimeout(function(){
                     $.unblockUI();
@@ -1050,7 +1050,7 @@ var table = {
                     dataType: dataType,
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("Processing, please wait...");
                     },
                     success: function(result) {
                         if (typeof callback == "function") {
@@ -1074,7 +1074,7 @@ var table = {
                 table.set();
                 var _url = $.operate.detailUrl(id);
                 var options = {
-                    title: table.options.modalName + "详细",
+                    title: table.options.modalName + "Detail",
                     width: width,
                     height: height,
                     url: _url,
@@ -1085,12 +1085,12 @@ var table = {
                 };
                 $.modal.openOptions(options);
             },
-            // 详细信息，以tab页展现
+            // Detail信息，以tab页展现
             detailTab: function(id) {
                 table.set();
-                $.modal.openTab("详细" + table.options.modalName, $.operate.detailUrl(id));
+                $.modal.openTab("Detail" + table.options.modalName, $.operate.detailUrl(id));
             },
-            // 详细访问地址
+            // Detail访问地址
             detailUrl: function(id) {
                 var url = "/404.html";
                 if ($.common.isNotEmpty(id)) {
@@ -1108,7 +1108,7 @@ var table = {
             // 删除信息
             remove: function(id) {
                 table.set();
-                $.modal.confirm("确定删除该条" + table.options.modalName + "信息吗？", function() {
+                $.modal.confirm("Confirm删除该条" + table.options.modalName + "信息吗？", function() {
                     var url = $.common.isEmpty(id) ? table.options.removeUrl : table.options.removeUrl.replace("{id}", id);
                     if (table.options.type == table_type.bootstrapTreeTable) {
                         $.operate.get(url);
@@ -1126,7 +1126,7 @@ var table = {
                     $.modal.alertWarning("请至少选择一条记录");
                     return;
                 }
-                $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function() {
+                $.modal.confirm("Confirm要删除选中的" + rows.length + "条数据吗?", function() {
                     var url = table.options.removeUrl;
                     var data = { "ids": rows.join() };
                     $.operate.submit(url, "post", "json", data);
@@ -1135,7 +1135,7 @@ var table = {
             // 清空信息
             clean: function() {
                 table.set();
-                $.modal.confirm("确定清空所有" + table.options.modalName + "吗？", function() {
+                $.modal.confirm("Confirm清空所有" + table.options.modalName + "吗？", function() {
                     var url = table.options.cleanUrl;
                     $.operate.submit(url, "post", "json", "");
                 });
@@ -1230,7 +1230,7 @@ var table = {
                     dataType: "json",
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("Processing, please wait...");
                         $.modal.disable();
                     },
                     success: function(result) {
@@ -1250,7 +1250,7 @@ var table = {
                     dataType: "json",
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("Processing, please wait...");
                     },
                     success: function(result) {
                         if (typeof callback == "function") {
@@ -1276,7 +1276,7 @@ var table = {
                     dataType: "json",
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("Processing, please wait...");
                     },
                     success: function(result) {
                         if (typeof callback == "function") {
@@ -1413,7 +1413,7 @@ var table = {
                 var setting = {
                     callback: {
                         onClick: options.onClick,                      // 用于捕获节点被点击的事件回调函数
-                        onCheck: options.onCheck,                      // 用于捕获 checkbox / radio 被勾选 或 取消勾选的事件回调函数
+                        onCheck: options.onCheck,                      // 用于捕获 checkbox / radio 被勾选 或 Cancel勾选的事件回调函数
                         onDblClick: options.onDblClick                 // 用于捕获鼠标双击之后的事件回调函数
                     },
                     check: options.check,
