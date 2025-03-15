@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Login to RuoYi System</title>
+    <meta name="description" content="RuoYi Backend Management Framework">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link href="../static/css/login.min.css" th:href="@{/css/login.min.css}" rel="stylesheet"/>
+    <link href="../static/ruoyi/css/ry-ui.css" th:href="@{/ruoyi/css/ry-ui.css?v=4.8.0}" rel="stylesheet"/>
+    <!-- 360 Browser Fast Mode -->
+    <meta name="renderer" content="webkit">
+    <!-- Avoid IE Compatibility Mode -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../static/favicon.ico" th:href="@{favicon.ico}"/>
+    <style type="text/css">label.error { position:inherit;  }</style>
+    <script>
+        if(window.top !== window.self) {
+            alert('Not logged in or session expired. Please log in again.');
+            window.top.location = window.location;
+        }
+    </script>
+    <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+    <script>
+        window.DATAFLUX_RUM &&
+          window.DATAFLUX_RUM.init({
+            applicationId: 'liurui_ruoyi',
+            site: 'https://rum-openway.guance.com',
+            clientToken: '70fcf3880d71490eab540ef414b27632',
+            env: 'production',
+            version: '1.0.0',
+            service: 'ruoyi-web',
+            sessionSampleRate: 100,
+            sessionReplaySampleRate: 70,
+            trackInteractions: true,
+            traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+            allowedTracingOrigins: ['http://localhost:8180','http://localhost:8180/ruoyi-admin']
+          });
+          window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
+    </script>
+</head>
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="signin-info">
+                    <div class="logopanel m-b">
+<!--                        <h1><img alt="[ RuoYi ]" src="../static/ruoyi.png" th:src="@{/ruoyi.png}"></h1>-->
+                    </div>
+                    <div class="m-b"></div>
+                    <h4>Welcome to use <strong>RuoYi Backend Management System</strong></h4>
+                    <ul class="m-b">
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> SpringBoot</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Mybatis</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Shiro</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Thymeleaf</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Bootstrap</li>
+                    </ul>
+                    <strong th:if="${isAllowRegister}">Don't have an account? <a th:href="@{/register}">Sign up now &raquo;</a></strong>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <form id="signupForm" autocomplete="off">
+                    <h4 class="no-margins">Login</h4>
+                    <p class="m-t-md">If you don't leave, I'll be with you forever.</p>
+                    <input type="text"     name="username" class="form-control uname"     placeholder="Username" value="admin"    />
+                    <input type="password" name="password" class="form-control pword"     placeholder="Password"   value="admin123" />
+                    <div class="row m-t" th:if="${captchaEnabled==true}">
+                        <div class="col-xs-6">
+                            <input type="text" name="validateCode" class="form-control code" placeholder="Verification Code" maxlength="5" />
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="javascript:void(0);" title="Click to change the verification code">
+                                <img th:src="@{/captcha/captchaImage(type=${captchaType})}" class="imgcode" width="85%"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="checkbox-custom" th:if="${isRemembered}" th:classappend="${captchaEnabled==false} ? 'm-t'">
+                        <input type="checkbox" id="rememberme" name="rememberme"> <label for="rememberme">Remember Me</label>
+                    </div>
+                    <button class="btn btn-success btn-block" id="btnSubmit" data-loading="Verifying login, please wait...">Login</button>
+                </form>
+            </div>
+        </div>
+        <div class="signup-footer">
+            <div class="pull-left">
+                Copyright © 2018-2025 ruoyi.vip All Rights Reserved. <br>
+            </div>
+        </div>
+    </div>
+<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]]; var captchaEnabled = [[${captchaEnabled}]];</script>
+<!--[if lte IE 8]><script>window.location.href=ctx+'html/ie.html';</script><![endif]-->
+<!-- Global JS -->
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../static/ajax/libs/validate/jquery.validate.min.js" th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
+<script src="../static/ajax/libs/layer/layer.min.js" th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+<script src="../static/ajax/libs/blockUI/jquery.blockUI.js" th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
+<script src="../static/ruoyi/js/ry-ui.js" th:src="@{/ruoyi/js/ry-ui.js?v=4.8.0}"></script>
+<script src="../static/ruoyi/login.js" th:src="@{/ruoyi/login.js}"></script>
+</body>
+</html>

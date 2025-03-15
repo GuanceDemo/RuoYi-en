@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 360 Browser High-Speed Mode -->
+	<title>RuoYi Introduction</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+	<link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+	<link href="../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+</head>
+
+<body class="gray-bg">
+<div class="row border-bottom white-bg dashboard-header">
+	<div class="col-sm-3">
+		<h2>Hello, Guest</h2>
+		<small>Scan the QR code below to access via mobile device:</small>
+		<br><br>
+		<img th:src="@{/img/qr_code.png}" width="100%" style="max-width:264px;">
+		<br>
+	</div>
+	<div class="col-sm-5">
+		<h2>RuoYi Backend Management Framework</h2>
+		<p>I have always wanted to create a backend management system. After reviewing many excellent open-source projects, I found none that suited my needs. Thus, during my free time, I started developing my own system. This led to the creation of the RuoYi management system. It can be used for all types of web applications such as <b>website admin backends</b>, <b>user centers</b>, <b>CMS</b>, <b>CRM</b>, <b>OA</b>, and more. You can also deeply customize it to build even stronger systems. The front-end and back-end code is highly encapsulated, making it easy to use with low error rates. It also supports mobile client access. More practical features will be added over time.</p>
+		<p>
+			<b>Current Version:</b><span>v[[${version}]]</span>
+		</p>
+		<p>
+			<span class="label label-warning">&yen; Free and Open Source</span>
+		</p>
+		<br>
+		<p>
+			<a class="btn btn-success btn-outline" href="https://gitee.com/y_project/RuoYi" target="_blank">
+				<i class="fa fa-cloud"> </i> Visit Gitee
+			</a>
+			<a class="btn btn-white btn-bitbucket" href="http://ruoyi.vip" target="_blank">
+				<i class="fa fa-home"></i> Visit Homepage
+			</a>
+		</p>
+	</div>
+	<div class="col-sm-4">
+		<h4>Technology Stack:</h4>
+		<ol>
+			<li>Core Framework: Spring Boot.</li>
+			<li>Security Framework: Apache Shiro.</li>
+			<li>Template Engine: Thymeleaf.</li>
+			<li>Persistence Layer Framework: MyBatis.</li>
+			<li>Scheduled Task: Quartz.</li>
+			<li>Database Connection Pool: Druid.</li>
+			<li>Utility Library: Fastjson.</li>
+			<li>More...</li>
+		</ol>
+	</div>
+</div>
+<div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Contact Information</h5>
+				</div>
+				<div class="ibox-content">
+					<p><i class="fa fa-send-o"></i> Official Website: <a href="http://www.ruoyi.vip" target="_blank">http://www.ruoyi.vip</a></p>
+					<p><i class="fa fa-qq"></i> QQ Groups: <s>Full 1389287</s> <s>Full 1679294</s> <s>Full 1529866</s> <s>Full 1772718</s> <s>Full 1366522</s> <s>Full 1382251</s> <s>Full 1145125</s> <s>Full 86752435</s> <s>Full 134072510</s> <s>Full 210336300</s> <s>Full 339522636</s> <s>Full 130035985</s> <s>Full 143151071</s> <s>Full 158781320</s> <s>Full 201531282</s> <s>Full 101526938</s> <s>Full 264355400</s> <s>Full 298522656</s> <s>Full 139845794</s> <s>Full 185760789</s> <s>Full 175104288</s> <s>Full 174942938</s> <s>Full 287843737</s> <s>Full 232896766</s> <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=XwhV8deuZXt__yteR1clNanVSXzA-ugq&authKey=ezgwKqEZPdP%2FgC9I03OBkJb%2Biii8yvVfwrcQuu0%2FL6ILXcRdHYDBFKCXeoeBT0E6&noverify=0&group_code=180208928" target="_blank">180208928</a></p>
+					<p><i class="fa fa-weixin"></i> WeChat: <a href="javascript:;">/* RuoYi</a></p>
+					<p><i class="fa fa-credit-card"></i> Alipay: <a href="javascript:;" class="Alipay Info">/* RuoYi</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Change Log</h5>
+				</div>
+				<div class="ibox-content no-padding">
+					<div class="panel-body">
+						<div class="panel-group" id="version">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h5 class="panel-title">
+										<a data-toggle="collapse" data-parent="#version" href="#v480">v4.8.0</a><code class="pull-right">2024.12.26</code>
+									</h5>
+								</div>
+								<div id="v480" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<ol>
+											<li>Support custom display of Excel property columns</li>
+											<li>Table defaults to escaping HTML strings</li>
+											<li>New example of column width drag-and-drop for long content adaptive display</li>
+											<li>Excel annotation supports whether to allow content line breaks with wrapText attribute</li>
+											<li>Code generation adds configuration option to allow file overwrite locally</li>
+											<li>Upgrade oshi to latest version 6.6.5</li>
+											<li>Upgrade tomcat to latest version 9.0.96</li>
+											<li>Upgrade logback to latest version 1.2.13</li>
+											<li>Upgrade commons.io to latest version 2.16.1</li>
+											<li>Upgrade spring-framework to latest version 5.3.39</li>
+											<li>Upgrade jquery.validate to latest version v1.21.0</li>
+											<li>Optimize import file closure cleanup</li>
+											<li>Code generation creates table shields illegal characters</li>
+											<li>Fix main-subtable data display issue</li>
+											<li>Fix remember me request header size issue</li>
+											<li>Fix role disable permission not taking effect issue</li>
+											<li>Fix anonymous annotation access failure issue</li>
+											<li>Fix export sub-list object can only be at the end issue</li>
+											<li>Fix multi-select dropdown box open causes page tab blank issue</li>
+											<li>Optimize ID card desensitization regex</li>
+											<li>Optimize query time range date format</li>
+											<li>Optimize asynchronous tree table fold synchronization child status</li>
+											<li>Optimize time control clear button style issue</li>
+											<li>Optimize dynamic path display issue for image preview in tables</li>
+											<li>Optimize select2 dropdown box required background color cannot be cleared issue</li>
+											<li>Other detail optimizations</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+							<!-- Other versions omitted for brevity -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Donation</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="alert alert-warning">
+						Please buy the author a cup of coffee (click the image to enlarge)
+					</div>
+<!--					<p id="pay-qrcode">-->
+<!--						<a href="javascript:;"><img th:src="@{/img/pay.png}" width="100%" alt="Please scan the QR code using your mobile phone's Alipay or WeChat app">-->
+<!--						</a>-->
+<!--					</p>-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+<script type="text/javascript">
+	$('#pay-qrcode').click(function(){
+        var html=$(this).html();
+        parent.layer.open({
+            title: false,
+            type: 1,
+            closeBtn:false,
+            shadeClose:true,
+            area: ['600px', '360px'],
+            content: html
+        });
+    });
+</script>
+</body>
+</html>

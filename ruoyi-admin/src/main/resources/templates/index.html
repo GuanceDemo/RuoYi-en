@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>RuoYi System Homepage</title>
+    <!-- Avoid IE compatibility mode -->
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link th:href="@{favicon.ico}" rel="shortcut icon"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/jquery.contextMenu.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <link th:href="@{/ruoyi/css/ry-ui.css?v=4.8.0}" rel="stylesheet"/>
+	<script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+	<script>
+		window.DATAFLUX_RUM &&
+          window.DATAFLUX_RUM.init({
+            applicationId: 'liurui_ruoyi',
+            site: 'https://rum-openway.guance.com',
+            clientToken: '70fcf3880d71490eab540ef414b27632',
+            env: 'production',
+            version: '1.0.0',
+            service: 'ruoyi_admin_web',
+            sessionSampleRate: 100,
+            sessionReplaySampleRate: 70,
+            trackInteractions: true,
+            traceType: 'ddtrace', // 非必填，默认为ddtrace，目前支持 ddtrace、zipkin、skywalking_v3、jaeger、zipkin_single_header、w3c_traceparent 6种类型
+            allowedTracingOrigins: ['http://localhost:8180','http://localhost:8180/ruoyi-admin'],
+          });
+          window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
+	</script>
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" th:classappend="${isMobile} ? 'canvas-menu'" style="overflow: hidden">
+<div id="wrapper">
+
+    <!--Left Navigation Start-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close">
+            <i class="fa fa-times-circle"></i>
+        </div>
+        <a th:href="@{/index}">
+            <li class="logo hidden-xs">
+                <span class="logo-lg">RuoYi</span>
+            </li>
+         </a>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+            	<li>
+            		<div class="user-panel">
+            			<a class="menuItem noactive" title="Personal Center" th:href="@{/system/user/profile}">
+            				<div class="hide" th:text="PersonalCenter"></div>
+					        <div class="pull-left image">
+		                    	<img th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}" th:onerror="this.src='img/profile.jpg'" class="img-circle" alt="User Image">
+					        </div>
+				        </a>
+				        <div class="pull-left info">
+				          <p>[[${user.loginName}]]</p>
+				          <a href="javascript:;"><i class="fa fa-circle text-success"></i> Online</a>
+				          <a th:href="@{logout}" style="padding-left:5px;"><i class="fa fa-sign-out text-danger"></i> Logout</a>
+				        </div>
+				    </div>
+            	</li>
+                <li>
+                    <a class="menuItem" th:href="@{/system/main}"><i class="fa fa-home"></i> <span class="nav-label">Home</span> </a>
+                </li>
+                <li th:each="menu : ${menus}">
+                	<a th:class="@{${!#strings.isEmpty(menu.url) && menu.url != '#'} ? ${menu.target}}" th:href="@{${#strings.isEmpty(menu.url)} ? |#| : ${menu.url}}" th:data-refresh="${menu.isRefresh == '0'}">
+                		<i class="fa fa-bar-chart-o" th:class="${menu.icon}"></i>
+                    	<span class="nav-label" th:text="${menu.menuName}">First Level Menu</span>
+                    	<span th:class="${#strings.isEmpty(menu.url) || menu.url == '#'} ? |fa arrow|"></span>
+                	</a>
+                    <ul class="nav nav-second-level collapse">
+						<li th:each="cmenu : ${menu.children}">
+							<a th:if="${#lists.isEmpty(cmenu.children)}" th:class="${#strings.isEmpty(cmenu.target)} ? |menuItem| : ${cmenu.target}" th:utext="${cmenu.menuName}" th:href="@{${cmenu.url}}" th:data-refresh="${cmenu.isRefresh == '0'}">Second Level Menu</a>
+							<a th:if="${not #lists.isEmpty(cmenu.children)}" href="javascript:;">[[${cmenu.menuName}]]<span class="fa arrow"></span></a>
+							<ul th:if="${not #lists.isEmpty(cmenu.children)}" class="nav nav-third-level">
+								<li th:each="emenu : ${cmenu.children}">
+								    <a th:if="${#lists.isEmpty(emenu.children)}" th:class="${#strings.isEmpty(emenu.target)} ? |menuItem| : ${emenu.target}" th:text="${emenu.menuName}" th:href="@{${emenu.url}}" th:data-refresh="${emenu.isRefresh == '0'}">Third Level Menu</a>
+								    <a th:if="${not #lists.isEmpty(emenu.children)}" href="javascript:;">[[${emenu.menuName}]]<span class="fa arrow"></span></a>
+								    <ul th:if="${not #lists.isEmpty(emenu.children)}" class="nav nav-four-level">
+								      	<li th:each="fmenu : ${emenu.children}"><a th:if="${#lists.isEmpty(fmenu.children)}" th:class="${#strings.isEmpty(fmenu.target)} ? |menuItem| : ${fmenu.target}" th:text="${fmenu.menuName}" th:href="@{${fmenu.url}}" th:data-refresh="${fmenu.isRefresh == '0'}">Fourth Level Menu</a></li>
+								    </ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+                </li>
+                <li th:if="${demoEnabled}">
+                    <a href="javascript:;"><i class="fa fa-desktop"></i><span class="nav-label">Demo Examples</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li> <a>Forms<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/form/button}">Buttons</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/grid}">Grid</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/select}">Select</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/timeline}">Timeline</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/progress_bars}">Progress Bars</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/basic}">Basic Form</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/cards}">Card List</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/jasny}">Extended Features</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/sortable}">Drag Sort</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/invoice}">Invoice Print</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/labels_tips}">Labels & Tips</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/tabs_panels}">Tabs & Panels</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/validate}">Form Validation</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/wizard}">Form Wizard</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/upload}">File Upload</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/datetime}">Date and Time</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/summernote}">Rich Text Editor</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/duallistbox}">Dual Listbox</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/autocomplete}">Search Autocomplete</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/cxselect}">Multi-level Cascade</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/localrefresh}">Ajax Partial Refresh</a></li>
+							</ul>
+                        </li>
+                        <li> <a>Tables<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/table/search}">Search Conditions</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/footer}">Data Summary</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/groupHeader}">Group Headers</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/export}">Table Export</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/textSearch}">Full Text Search</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/exportSelected}">Export Selected</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/remember}">Remember Selection</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/cookie}">Save Table State</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/pageGo}">Go to Page</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/params}">Custom Query Params</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/multi}">Multiple Tables</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/button}">Load Table by Button</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/data}">Direct Data Loading</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/fixedColumns}">Fixed Columns</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/event}">Custom Events</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/headerStyle}">Header Formatting</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/detail}">Detail View</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/child}">Parent-Child View</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/image}">Image Preview</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/curd}">Dynamic CRUD</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/reorderRows}">Row Drag & Drop</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/reorderColumns}">Column Drag & Drop</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/resizable}">Resizable Columns</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/editable}">Inline Editing</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/subdata}">Master-Detail Submit</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/refresh}">Auto Refresh</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/print}">Print Settings</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/dynamicColumns}">Dynamic Columns</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/virtualScroll}">Virtual Scroll</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/customView}">Custom View Pagination</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/asynTree}">Async Tree Table</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/other}">Other Operations</a></li>
+							</ul>
+                        </li>
+                        <li> <a>Dialogs<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/modal/dialog}">Modal Window</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/layer}">Layer Component</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/table}">Layer Table</a></li>
+							</ul>
+                        </li>
+                        <li> <a>Operations<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/operate/table}">Table</a></li>
+								<li><a class="menuItem" th:href="@{/demo/operate/other}">Other</a></li>
+							</ul>
+                        </li>
+                        <li> <a>Reports<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/report/echarts}">Baidu ECharts</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/peity}">Peity</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/sparkline}">Sparkline</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/metrics}">Chart Combinations</a></li>
+							</ul>
+                        </li>
+                        <li> <a>Icons<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/icon/fontawesome}">Font Awesome</a></li>
+								<li><a class="menuItem" th:href="@{/demo/icon/glyphicons}">Glyphicons</a></li>
+							</ul>
+                        </li>
+                        <li>
+	                        <a href="javascript:;"><i class="fa fa-sitemap"></i>Four Level Menu<span class="fa arrow"></span></a>
+	                        <ul class="nav nav-third-level collapse">
+	                            <li>
+	                                <a href="javascript:;" id="damian">Third Level Menu 1<span class="fa arrow"></span></a>
+	                                <ul class="nav nav-third-level">
+	                                    <li>
+	                                        <a href="javascript:;">Fourth Level Menu 1</a>
+	                                    </li>
+	                                    <li>
+	                                        <a href="javascript:;">Fourth Level Menu 2</a>
+	                                    </li>
+	                                </ul>
+	                            </li>
+	                            <li><a href="javascript:;">Third Level Menu 2</a></li>
+	                        </ul>
+	                    </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Left Navigation End-->
+
+    <!--Right Section Start-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2" style="color:#FFF;" href="javascript:;" title="Collapse Menu">
+                    	<i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right welcome-message">
+                    <li><a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Development Docs" href="http://doc.ruoyi.vip/ruoyi" target="_blank"><i class="fa fa-question-circle"></i> Docs</a></li>
+                    <li><a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Lock Screen" href="javascript:;" id="lockScreen"><i class="fa fa-lock"></i> Lock</a></li>
+	                <li><a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Full Screen" href="javascript:;" id="fullScreen"><i class="fa fa-arrows-alt"></i> Full Screen</a></li>
+                    <li class="dropdown user-menu">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-hover="dropdown">
+							<img th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}" th:onerror="this.src='img/profile.jpg'" class="user-image">
+							<span class="hidden-xs">[[${#strings.defaultString(user.userName, '-')}]]</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="mt5">
+								<a th:href="@{/system/user/profile}" class="menuItem noactive">
+								<i class="fa fa-user"></i> Personal Center</a>
+							</li>
+							<li>
+								<a onclick="resetPwd()">
+								<i class="fa fa-key"></i> Change Password</a>
+							</li>
+							<li>
+								<a onclick="switchSkin()">
+								<i class="fa fa-dashboard"></i> Switch Theme</a>
+							</li>
+							<li>
+								<a onclick="toggleMenu()">
+								<i class="fa fa-toggle-off"></i> Horizontal Menu</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a th:href="@{logout}">
+								<i class="fa fa-sign-out"></i> Logout</a>
+							</li>
+						</ul>
+					</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row content-tabs" th:classappend="${#bools.isFalse(tagsView)} ? |hide|">
+            <button class="roll-nav roll-left tabLeft">
+                <i class="fa fa-backward"></i>
+            </button>
+            <nav class="page-tabs menuTabs">
+                <div class="page-tabs-content">
+                    <a href="javascript:;" class="active menuTab" th:data-id="@{/system/main}">Home</a>
+                </div>
+            </nav>
+            <button class="roll-nav roll-right tabRight">
+                <i class="fa fa-forward"></i>
+            </button>
+            <a href="javascript:void(0);" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> Refresh</a>
+        </div>
+
+        <a id="ax_close_max" class="ax_close_max" href="javascript:;" title="Close Fullscreen"> <i class="fa fa-times-circle-o"></i> </a>
+
+        <div class="row mainContent" id="content-main" th:classappend="${mainClass}">
+            <iframe class="RuoYi_iframe" name="iframe0" width="100%" height="100%" th:data-id="@{/system/main}"
+                th:src="@{/system/main}" frameborder="0" seamless></iframe>
+        </div>
+
+        <div th:if="${footer}" class="footer">
+            <div class="pull-right">© [[${copyrightYear}]] RuoYi Copyright </div>
+        </div>
+    </div>
+    <!--Right Section End-->
+</div>
+<!-- Global js -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js/jquery.contextMenu.min.js}"></script>
+<script th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
+<script th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+<script th:src="@{/ruoyi/js/ry-ui.js?v=4.8.0}"></script>
+<script th:src="@{/ruoyi/js/common.js?v=4.8.0}"></script>
+<script th:src="@{/ruoyi/index.js?v=20201208}"></script>
+<script th:src="@{/ajax/libs/fullscreen/jquery.fullscreen.js}"></script>
+<script th:inline="javascript">
+window.history.forward(1);
+var ctx = [[@{/}]]; 
+var lockscreen = [[${session.lockscreen}]]; 
+if(lockscreen){window.top.location=ctx+"lockscreen";}
+// Skin cache
+var skin = storage.get("skin");
+// history (remove # from address) otherwise address shows with "#"
+var mode = "history";
+// History path cache
+var historyPath = storage.get("historyPath");
+// Whether tabs and menu are linked
+var isLinkage = true;
+// Whether to scroll to top when switching tabs
+var isScrollToTop = true;
+
+// Local theme takes priority, use system config if not set
+if($.common.isNotEmpty(skin)){
+	$("body").addClass(skin.split('|')[0]);
+	$("body").addClass(skin.split('|')[1]);
+} else {
+	$("body").addClass([[${sideTheme}]]);
+	$("body").addClass([[${skinName}]]);
+}
+
+/* User Management - Reset Password */
+function resetPwd() {
+    var url = ctx + 'system/user/profile/resetPwd';
+    $.modal.open("Reset Password", url, '770', '380');
+}
+
+/* Switch Theme */
+function switchSkin() {
+    layer.open({
+		type : 2,
+		shadeClose : true,
+		title : "Switch Theme",
+		area : ["530px", "386px"],
+		content : [ctx + "system/switchSkin", 'no']
+	})
+}
+
+/* Toggle Menu */
+function toggleMenu() {
+	$.modal.confirm("Are you sure you want to switch to horizontal menu?", function() {
+		$.get(ctx + 'system/menuStyle/topnav', function(result) {
+            window.location.reload();
+	    });
+	})
+}
+
+/** Refresh path tab when refreshing */
+function applyPath(url) {
+	$('a[href$="' + decodeURI(url) + '"]').click();
+	if (!$('a[href$="' + url + '"]').hasClass("noactive")) {
+	    $('a[href$="' + url + '"]').parent("li").addClass("selected").parents("li").addClass("active").end().parents("ul").addClass("in");
+	}
+}
+
+$(function() {
+	var lockPath = storage.get('lockPath');
+	if($.common.equals("history", mode) && window.performance.navigation.type == 1) {
+		var url = storage.get('publicPath');
+	    if ($.common.isNotEmpty(url)) {
+	    	applyPath(url);
+	    }
+	} else if($.common.isNotEmpty(lockPath)) {
+	    applyPath(lockPath);
+	    storage.remove('lockPath');
+	} else {
+		var hash = location.hash;
+	    if ($.common.isNotEmpty(hash)) {
+	        var url = hash.substring(1, hash.length);
+	        applyPath(url);
+	    } else {
+	    	if($.common.equals("history", mode)) {
+	    		storage.set('publicPath', "");
+	    	}
+	    }
+	}
+	
+	/* Initial password prompt */
+	if([[${isDefaultModifyPwd}]]) {
+		layer.confirm("Your password is still the initial password, please change it!", {
+			icon: 0,
+			title: "Security Tip",
+			btn: ['Confirm', 'Cancel'],
+			offset: ['30%']
+		}, function (index) {
+			resetPwd();
+			layer.close(index);
+		});
+	}
+	
+	/* Expired password prompt */
+	if([[${isPasswordExpired}]]) {
+		layer.confirm("Your password has expired, please change it soon!", {
+			icon: 0,
+			title: "Security Tip",
+			btn: ['Confirm', 'Cancel'],
+			offset: ['30%']
+		}, function (index) {
+			resetPwd();
+			layer.close(index);
+		});
+	}
+	$("[data-toggle='tooltip']").tooltip();
+});
+</script>
+</body>
+</html>
