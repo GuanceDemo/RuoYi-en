@@ -774,7 +774,7 @@ var table = {
                 top.layer.alert(content, {
                     icon: $.modal.icon(type),
                     title: "System Tips",
-                    btn: ['con firm'],
+                    btn: ['Confirm'],
                     btnclass: ['btn btn-primary'],
                 });
             },
