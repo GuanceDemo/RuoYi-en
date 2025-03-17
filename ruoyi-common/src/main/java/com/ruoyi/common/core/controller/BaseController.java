@@ -168,7 +168,7 @@ public class BaseController
      */
     public static AjaxResult success(Object data)
     {
-        return AjaxResult.success("操作成功", data);
+        return AjaxResult.success("Operation successful", data);
     }
 
     /**
