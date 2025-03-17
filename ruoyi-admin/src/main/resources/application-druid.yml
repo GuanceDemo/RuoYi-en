@@ -1,3 +1,9 @@
+mysql:
+    host: localhost
+    port: 3306
+    database: ry_en
+    username: root
+    password: 123456
 # 数据源配置
 spring:
     datasource:
@@ -6,9 +12,9 @@ spring:
         druid:
             # 主库数据源
             master:
-                url: jdbc:mysql://mysql-e88eabe7f8e5-public.rds.volces.com:3306/ry_en?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-                username: 
-                password: 
+                url: jdbc:mysql://${mysql.host}:${mysql.port}/${mysql.database}?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                username: ${mysql.username}
+                password: ${mysql.password}
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭
