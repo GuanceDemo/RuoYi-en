@@ -69,7 +69,7 @@ public class SysDeptController extends BaseController
     /**
      * 新增保存部门
      */
-    @Log(title = "部门管理", businessType = BusinessType.INSERT)
+    @Log(title = "Department Management", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dept:add")
     @PostMapping("/add")
     @ResponseBody
@@ -103,7 +103,7 @@ public class SysDeptController extends BaseController
     /**
      * 修改保存部门
      */
-    @Log(title = "部门管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Department Management", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dept:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -130,7 +130,7 @@ public class SysDeptController extends BaseController
     /**
      * 删除
      */
-    @Log(title = "部门管理", businessType = BusinessType.DELETE)
+    @Log(title = "Department Management", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dept:remove")
     @GetMapping("/remove/{deptId}")
     @ResponseBody

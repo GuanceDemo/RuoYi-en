@@ -54,7 +54,7 @@ public class SysConfigController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "参数管理", businessType = BusinessType.EXPORT)
+    @Log(title = "Parameter Management", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:config:export")
     @PostMapping("/export")
     @ResponseBody
@@ -79,7 +79,7 @@ public class SysConfigController extends BaseController
      * 新增保存参数配置
      */
     @RequiresPermissions("system:config:add")
-    @Log(title = "参数管理", businessType = BusinessType.INSERT)
+    @Log(title = "Parameter Management", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysConfig config)
@@ -107,7 +107,7 @@ public class SysConfigController extends BaseController
      * 修改保存参数配置
      */
     @RequiresPermissions("system:config:edit")
-    @Log(title = "参数管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Parameter Management", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysConfig config)
@@ -124,7 +124,7 @@ public class SysConfigController extends BaseController
      * 删除参数配置
      */
     @RequiresPermissions("system:config:remove")
-    @Log(title = "参数管理", businessType = BusinessType.DELETE)
+    @Log(title = "Parameter Management", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -137,7 +137,7 @@ public class SysConfigController extends BaseController
      * 刷新参数缓存
      */
     @RequiresPermissions("system:config:remove")
-    @Log(title = "参数管理", businessType = BusinessType.CLEAN)
+    @Log(title = "Parameter Management", businessType = BusinessType.CLEAN)
     @GetMapping("/refreshCache")
     @ResponseBody
     public AjaxResult refreshCache()

@@ -67,7 +67,7 @@ public class SysNoticeController extends BaseController
      * 新增保存公告
      */
     @RequiresPermissions("system:notice:add")
-    @Log(title = "通知公告", businessType = BusinessType.INSERT)
+    @Log(title = "Announcement", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysNotice notice)
@@ -91,7 +91,7 @@ public class SysNoticeController extends BaseController
      * 修改保存公告
      */
     @RequiresPermissions("system:notice:edit")
-    @Log(title = "通知公告", businessType = BusinessType.UPDATE)
+    @Log(title = "Announcement", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysNotice notice)
@@ -115,7 +115,7 @@ public class SysNoticeController extends BaseController
      * 删除公告
      */
     @RequiresPermissions("system:notice:remove")
-    @Log(title = "通知公告", businessType = BusinessType.DELETE)
+    @Log(title = "Announcement", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

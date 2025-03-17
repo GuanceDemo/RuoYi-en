@@ -56,7 +56,7 @@ public class SysMenuController extends BaseController
     /**
      * 删除菜单
      */
-    @Log(title = "菜单管理", businessType = BusinessType.DELETE)
+    @Log(title = "Menu Management", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:menu:remove")
     @GetMapping("/remove/{menuId}")
     @ResponseBody
@@ -99,7 +99,7 @@ public class SysMenuController extends BaseController
     /**
      * 新增保存菜单
      */
-    @Log(title = "菜单管理", businessType = BusinessType.INSERT)
+    @Log(title = "Menu Management", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:menu:add")
     @PostMapping("/add")
     @ResponseBody
@@ -128,7 +128,7 @@ public class SysMenuController extends BaseController
     /**
      * 修改保存菜单
      */
-    @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Menu Management", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:menu:edit")
     @PostMapping("/edit")
     @ResponseBody

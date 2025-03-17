@@ -78,7 +78,7 @@ public class SysUserController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
+    @Log(title = "User Management", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:user:export")
     @PostMapping("/export")
     @ResponseBody
@@ -89,7 +89,7 @@ public class SysUserController extends BaseController
         return util.exportExcel(list, "用户数据");
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.IMPORT)
+    @Log(title = "User Management", businessType = BusinessType.IMPORT)
     @RequiresPermissions("system:user:import")
     @PostMapping("/importData")
     @ResponseBody
@@ -126,7 +126,7 @@ public class SysUserController extends BaseController
      * 新增保存用户
      */
     @RequiresPermissions("system:user:add")
-    @Log(title = "用户管理", businessType = BusinessType.INSERT)
+    @Log(title = "User Management", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysUser user)
@@ -185,7 +185,7 @@ public class SysUserController extends BaseController
      * 修改保存用户
      */
     @RequiresPermissions("system:user:edit")
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "User Management", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysUser user)
@@ -224,7 +224,7 @@ public class SysUserController extends BaseController
     }
 
     @RequiresPermissions("system:user:resetPwd")
-    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @Log(title = "Reset Passwork", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwdSave(SysUser user)
@@ -263,7 +263,7 @@ public class SysUserController extends BaseController
      * 用户授权角色
      */
     @RequiresPermissions("system:user:edit")
-    @Log(title = "用户管理", businessType = BusinessType.GRANT)
+    @Log(title = "User Management", businessType = BusinessType.GRANT)
     @PostMapping("/authRole/insertAuthRole")
     @ResponseBody
     public AjaxResult insertAuthRole(Long userId, Long[] roleIds)
@@ -276,7 +276,7 @@ public class SysUserController extends BaseController
     }
 
     @RequiresPermissions("system:user:remove")
-    @Log(title = "用户管理", businessType = BusinessType.DELETE)
+    @Log(title = "User Management", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -321,7 +321,7 @@ public class SysUserController extends BaseController
     /**
      * 用户状态修改
      */
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "User Management", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:user:edit")
     @PostMapping("/changeStatus")
     @ResponseBody

@@ -52,7 +52,7 @@ public class SysDictTypeController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
+    @Log(title = "Dictionary Type", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -61,11 +61,11 @@ public class SysDictTypeController extends BaseController
 
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
         ExcelUtil<SysDictType> util = new ExcelUtil<SysDictType>(SysDictType.class);
-        return util.exportExcel(list, "字典类型");
+        return util.exportExcel(list, "Dictionary Type");
     }
 
     /**
-     * 新增字典类型
+     * 新增Dictionary Type
      */
     @RequiresPermissions("system:dict:add")
     @GetMapping("/add")
@@ -75,9 +75,9 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 新增保存字典类型
+     * 新增保存Dictionary Type
      */
-    @Log(title = "字典类型", businessType = BusinessType.INSERT)
+    @Log(title = "Dictionary Type", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -85,14 +85,14 @@ public class SysDictTypeController extends BaseController
     {
         if (!dictTypeService.checkDictTypeUnique(dict))
         {
-            return error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
+            return error("新增字典'" + dict.getDictName() + "'失败，Dictionary Type已存在");
         }
         dict.setCreateBy(getLoginName());
         return toAjax(dictTypeService.insertDictType(dict));
     }
 
     /**
-     * 修改字典类型
+     * 修改Dictionary Type
      */
     @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictId}")
@@ -103,9 +103,9 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 修改保存字典类型
+     * 修改保存Dictionary Type
      */
-    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
+    @Log(title = "Dictionary Type", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -113,13 +113,13 @@ public class SysDictTypeController extends BaseController
     {
         if (!dictTypeService.checkDictTypeUnique(dict))
         {
-            return error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
+            return error("修改字典'" + dict.getDictName() + "'失败，Dictionary Type已存在");
         }
         dict.setUpdateBy(getLoginName());
         return toAjax(dictTypeService.updateDictType(dict));
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "Dictionary Type", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -133,7 +133,7 @@ public class SysDictTypeController extends BaseController
      * 刷新字典缓存
      */
     @RequiresPermissions("system:dict:remove")
-    @Log(title = "字典类型", businessType = BusinessType.CLEAN)
+    @Log(title = "Dictionary Type", businessType = BusinessType.CLEAN)
     @GetMapping("/refreshCache")
     @ResponseBody
     public AjaxResult refreshCache()
@@ -155,7 +155,7 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 校验字典类型
+     * 校验Dictionary Type
      */
     @PostMapping("/checkDictTypeUnique")
     @ResponseBody

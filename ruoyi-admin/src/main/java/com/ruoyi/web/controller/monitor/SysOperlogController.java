@@ -20,7 +20,7 @@ import com.ruoyi.system.domain.SysOperLog;
 import com.ruoyi.system.service.ISysOperLogService;
 
 /**
- * 操作日志记录
+ * Action Log记录
  * 
  * @author ruoyi
  */
@@ -50,7 +50,7 @@ public class SysOperlogController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "操作日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Action Log", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:operlog:export")
     @PostMapping("/export")
     @ResponseBody
@@ -58,10 +58,10 @@ public class SysOperlogController extends BaseController
     {
         List<SysOperLog> list = operLogService.selectOperLogList(operLog);
         ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
-        return util.exportExcel(list, "操作日志");
+        return util.exportExcel(list, "Action Log");
     }
 
-    @Log(title = "操作日志", businessType = BusinessType.DELETE)
+    @Log(title = "Action Log", businessType = BusinessType.DELETE)
     @RequiresPermissions("monitor:operlog:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -78,7 +78,7 @@ public class SysOperlogController extends BaseController
         return prefix + "/detail";
     }
     
-    @Log(title = "操作日志", businessType = BusinessType.CLEAN)
+    @Log(title = "Action Log", businessType = BusinessType.CLEAN)
     @RequiresPermissions("monitor:operlog:remove")
     @PostMapping("/clean")
     @ResponseBody

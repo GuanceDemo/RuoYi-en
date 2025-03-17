@@ -26,7 +26,7 @@ import com.ruoyi.framework.shiro.service.SysPasswordService;
 import com.ruoyi.system.service.ISysUserService;
 
 /**
- * 个人信息 业务处理
+ * Personal information 业务处理
  * 
  * @author ruoyi
  */
@@ -45,7 +45,7 @@ public class SysProfileController extends BaseController
     private SysPasswordService passwordService;
 
     /**
-     * 个人信息
+     * Personal information
      */
     @GetMapping()
     public String profile(ModelMap mmap)
@@ -73,7 +73,7 @@ public class SysProfileController extends BaseController
         return prefix + "/resetPwd";
     }
 
-    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @Log(title = "Reset Passwork", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwd(String oldPassword, String newPassword)
@@ -123,7 +123,7 @@ public class SysProfileController extends BaseController
     /**
      * 修改用户
      */
-    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @Log(title = "Personal information", businessType = BusinessType.UPDATE)
     @PostMapping("/update")
     @ResponseBody
     public AjaxResult update(SysUser user)
@@ -152,7 +152,7 @@ public class SysProfileController extends BaseController
     /**
      * 保存头像
      */
-    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @Log(title = "Personal information", businessType = BusinessType.UPDATE)
     @PostMapping("/updateAvatar")
     @ResponseBody
     public AjaxResult updateAvatar(@RequestParam("avatarfile") MultipartFile file)

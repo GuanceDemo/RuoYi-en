@@ -57,7 +57,7 @@ public class SysUserOnlineController extends BaseController
     }
 
     @RequiresPermissions(value = { "monitor:online:batchForceLogout", "monitor:online:forceLogout" }, logical = Logical.OR)
-    @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @Log(title = "Online Users", businessType = BusinessType.FORCE)
     @PostMapping("/batchForceLogout")
     @ResponseBody
     public AjaxResult batchForceLogout(String ids)

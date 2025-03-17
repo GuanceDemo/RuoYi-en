@@ -51,7 +51,7 @@ public class SysDictDataController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.EXPORT)
+    @Log(title = "Dictionary Data", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -59,11 +59,11 @@ public class SysDictDataController extends BaseController
     {
         List<SysDictData> list = dictDataService.selectDictDataList(dictData);
         ExcelUtil<SysDictData> util = new ExcelUtil<SysDictData>(SysDictData.class);
-        return util.exportExcel(list, "字典数据");
+        return util.exportExcel(list, "Dictionary Data");
     }
 
     /**
-     * 新增字典类型
+     * 新增Dictionary Type
      */
     @RequiresPermissions("system:dict:add")
     @GetMapping("/add/{dictType}")
@@ -74,9 +74,9 @@ public class SysDictDataController extends BaseController
     }
 
     /**
-     * 新增保存字典类型
+     * 新增保存Dictionary Type
      */
-    @Log(title = "字典数据", businessType = BusinessType.INSERT)
+    @Log(title = "Dictionary Data", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -87,7 +87,7 @@ public class SysDictDataController extends BaseController
     }
 
     /**
-     * 修改字典类型
+     * 修改Dictionary Type
      */
     @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictCode}")
@@ -98,9 +98,9 @@ public class SysDictDataController extends BaseController
     }
 
     /**
-     * 修改保存字典类型
+     * 修改保存Dictionary Type
      */
-    @Log(title = "字典数据", businessType = BusinessType.UPDATE)
+    @Log(title = "Dictionary Data", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -110,7 +110,7 @@ public class SysDictDataController extends BaseController
         return toAjax(dictDataService.updateDictData(dict));
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.DELETE)
+    @Log(title = "Dictionary Data", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody

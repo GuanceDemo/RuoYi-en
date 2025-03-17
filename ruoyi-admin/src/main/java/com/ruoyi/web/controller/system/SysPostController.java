@@ -51,7 +51,7 @@ public class SysPostController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
+    @Log(title = "Position Management", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:post:export")
     @PostMapping("/export")
     @ResponseBody
@@ -63,7 +63,7 @@ public class SysPostController extends BaseController
     }
 
     @RequiresPermissions("system:post:remove")
-    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
+    @Log(title = "Position Management", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -85,7 +85,7 @@ public class SysPostController extends BaseController
      * 新增保存岗位
      */
     @RequiresPermissions("system:post:add")
-    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
+    @Log(title = "Position Management", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysPost post)
@@ -117,7 +117,7 @@ public class SysPostController extends BaseController
      * 修改保存岗位
      */
     @RequiresPermissions("system:post:edit")
-    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Position Management", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysPost post)
