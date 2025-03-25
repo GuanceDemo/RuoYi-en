@@ -27,7 +27,7 @@ public class AddressUtils
         // 内网不查询
         if (IpUtils.internalIp(ip))
         {
-            return "内网IP";
+            return "Internal Network IP";
         }
         if (RuoYiConfig.isAddressEnabled())
         {
@@ -36,7 +36,7 @@ public class AddressUtils
                 String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constants.GBK);
                 if (StringUtils.isEmpty(rspStr))
                 {
-                    log.error("获取地理位置异常 {}", ip);
+                    log.error("Geolocation acquisition exception {}", ip);
                     return UNKNOWN;
                 }
                 JSONObject obj = JSONObject.parseObject(rspStr);
@@ -46,7 +46,7 @@ public class AddressUtils
             }
             catch (Exception e)
             {
-                log.error("获取地理位置异常 {}", e);
+                log.error("Geolocation acquisition exception {}", e);
             }
         }
         return UNKNOWN;
